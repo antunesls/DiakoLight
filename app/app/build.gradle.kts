@@ -13,8 +13,8 @@ android {
         applicationId = "com.diakolight"
         minSdk = 26
         targetSdk = 35
-        versionCode = 6
-        versionName = "2026.11.08"
+        versionCode = 7
+        versionName = "2026.11.18"
     }
 
     buildTypes {

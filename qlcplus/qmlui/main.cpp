@@ -58,13 +58,15 @@ int main(int argc, char *argv[])
 
     QApplication::setOrganizationName("qlcplus");
     QApplication::setOrganizationDomain("qlcplus.org");
-    QApplication::setApplicationName(APPNAME);
+    // Preserva o namespace das configurações existentes do QLC+.
+    QApplication::setApplicationName("Q Light Controller Plus");
+    QApplication::setApplicationDisplayName(APPNAME);
     QApplication::setApplicationVersion(QString(APPVERSION));
 
     printVersion();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Q Light Controller Plus");
+    parser.setApplicationDescription(APPNAME);
     // Multi-letter short names (-wp, -wa, -sa) must not be split into -w -p, -s -a, ...
     parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
 

@@ -10,13 +10,13 @@
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\nsis3-vintage.bmp"
 !define MUI_HEADERIMAGE_LEFT
-!define MUI_PAGE_HEADER_TEXT "Q Light Controller Plus"
+!define MUI_PAGE_HEADER_TEXT "DiakoLight"
 !define MUI_COMPONENTSPAGE_NODESC
 
 ;--------------------------------
 ;General
-Name "Q Light Controller Plus"
-OutFile "QLC+_5.3.1.exe"
+Name "DiakoLight"
+OutFile "DiakoLight_5.3.1.exe"
 InstallDir C:\QLC+5
 InstallDirRegKey HKCU "Software\qlcplus" "Install_Dir"
 RequestExecutionLevel user
@@ -48,14 +48,14 @@ Page instfiles
 Function StartMenuGroupSelect
 	Push $R1
 
-	StartMenu::Select /checknoshortcuts "Don't create a start menu folder" /autoadd /lastused $R0 "Q Light Controller Plus"
+	StartMenu::Select /checknoshortcuts "Don't create a start menu folder" /autoadd /lastused $R0 "DiakoLight"
 	Pop $R1
 
 	StrCmp $R1 "success" success
 	StrCmp $R1 "cancel" done
 		; error
 		MessageBox MB_OK $R1
-		StrCpy $R0 "Q Light Controller Plus" # use default
+		StrCpy $R0 "DiakoLight" # use default
 		Return
 	success:
 	Pop $R0
@@ -66,7 +66,7 @@ FunctionEnd
 
 ;--------------------------------
 ; Main application section (checked & disabled)
-Section "Q Light Controller Plus" SEC_MAIN
+Section "DiakoLight" SEC_MAIN
 	SectionIn RO
 	SetOutPath $INSTDIR
 
@@ -74,7 +74,7 @@ Section "Q Light Controller Plus" SEC_MAIN
 	StrCpy $R1 $R0 1
 	StrCmp $R1 ">" skip
 		CreateDirectory $SMPROGRAMS\$R0
-		CreateShortCut '$SMPROGRAMS\$R0\Q Light Controller Plus.lnk' $INSTDIR\qlcplus5.exe
+		CreateShortCut '$SMPROGRAMS\$R0\DiakoLight.lnk' $INSTDIR\qlcplus5.exe
 
 		CreateDirectory $SMPROGRAMS\$R0
 		CreateShortCut '$SMPROGRAMS\$R0\Uninstall.lnk' $INSTDIR\uninstall.exe
@@ -87,12 +87,12 @@ SectionEnd
 Section "Associate .qxw and .qxf files" SEC_ASSOC
 	; Per-user classes (maps to HKCR for current user)
 	WriteRegStr HKCU "Software\Classes\.qxw" "" "QLightControllerPlus.Document"
-	WriteRegStr HKCU "Software\Classes\QLightControllerPlus.Document" "" "Q Light Controller Plus Workspace"
+	WriteRegStr HKCU "Software\Classes\QLightControllerPlus.Document" "" "DiakoLight Workspace"
 	WriteRegStr HKCU "Software\Classes\QLightControllerPlus.Document\DefaultIcon" "" "$INSTDIR\qlcplus5.exe,0"
 	WriteRegStr HKCU "Software\Classes\QLightControllerPlus.Document\shell\open\command" "" '"$INSTDIR\qlcplus5.exe" --open "%1"'
 
 	WriteRegStr HKCU "Software\Classes\.qxf" "" "QLightControllerPlusFixture.Document"
-	WriteRegStr HKCU "Software\Classes\QLightControllerPlusFixture.Document" "" "Q Light Controller Plus Fixture"
+	WriteRegStr HKCU "Software\Classes\QLightControllerPlusFixture.Document" "" "DiakoLight Fixture"
 	WriteRegStr HKCU "Software\Classes\QLightControllerPlusFixture.Document\DefaultIcon" "" "$INSTDIR\qlcplus5.exe,0"
 	WriteRegStr HKCU "Software\Classes\QLightControllerPlusFixture.Document\shell\open\command" "" '"$INSTDIR\qlcplus5.exe" --open "%1"'
 

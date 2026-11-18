@@ -40,8 +40,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.diakolight.R
 import com.diakolight.data.ApiMode
 import com.diakolight.data.CockpitRepository
 import com.diakolight.data.CockpitState
@@ -158,7 +160,7 @@ fun CockpitContent(
         AlertDialog(
             onDismissRequest = { repository.clearAlert() },
             confirmButton = { TextButton(onClick = { repository.clearAlert() }) { Text("OK") } },
-            title = { Text("QLC+") },
+            title = { Text(stringResource(R.string.app_name)) },
             text = { Text(text) },
         )
     }
